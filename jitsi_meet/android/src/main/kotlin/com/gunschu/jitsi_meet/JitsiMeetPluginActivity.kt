@@ -85,6 +85,7 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
 
         Log.d(JITSI_PLUGIN_TAG, String.format("JitsiMeetPluginActivity.onConferenceTerminated: %s", data))
         JitsiMeetEventStreamHandler.instance.onConferenceTerminated(data)
+        finish()
         super.onConferenceTerminated(data)
     }
 

@@ -42,6 +42,8 @@ abstract class JitsiMeetPlatform extends PlatformInterface {
     throw UnimplementedError('joinMeeting has not been implemented.');
   }
 
+   reopenMeeting();
+
   /// Adds a JitsiMeetingListener that will broadcast conference events
   addListener(JitsiMeetingListener jitsiMeetingListener) {
     throw UnimplementedError('addListener has not been implemented.');

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -152,5 +153,12 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
           break;
       }
     }
+  }
+
+  @override
+  reopenMeeting() {
+   if(Platform.isAndroid){
+     _channel.invokeMethod('reopenMeeting');
+   }
   }
 }

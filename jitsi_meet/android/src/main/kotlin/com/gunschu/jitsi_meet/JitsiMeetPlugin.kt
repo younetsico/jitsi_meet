@@ -1,5 +1,6 @@
 package com.gunschu.jitsi_meet
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.util.Log
@@ -92,6 +93,9 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
             "closeMeeting" -> {
                 closeMeeting(call, result)
             }
+            "reopenMeeting"->{
+                reopenMeeting(call,result)
+            }
             else -> result.notImplemented()
         }
     }
@@ -99,6 +103,7 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
     /**
      * Method call to join a meeting
      */
+    @SuppressLint("LogNotTimber")
     private fun joinMeeting(call: MethodCall, result: Result) {
         val room = call.argument<String>("room")
         if (room.isNullOrBlank()) {
@@ -161,7 +166,14 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
     private fun closeMeeting(call: MethodCall, result: Result) {
         val intent = Intent(JITSI_MEETING_CLOSE)
         activity?.sendBroadcast(intent)
-        result.success(null)
+        result.success(true)
+    }
+
+    private fun reopenMeeting(call: MethodCall, result: Result){
+        var intent = Intent(this.activity, JitsiMeetPluginActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+        this.activity?.startActivity(intent)
+        result.success(true)
     }
 
     /**
