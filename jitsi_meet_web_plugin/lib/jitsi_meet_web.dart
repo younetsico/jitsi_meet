@@ -215,4 +215,7 @@ class JitsiMeetAPI extends JitsiMeetExternalAPI {
     }
 }
 var jitsi = { JitsiMeetAPI: JitsiMeetAPI };""";
+
+  @override
+  reopenMeeting() {}
 }

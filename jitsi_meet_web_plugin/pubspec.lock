@@ -7,7 +7,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -68,9 +68,11 @@ packages:
   jitsi_meet_platform_interface:
     dependency: "direct main"
     description:
-      name: jitsi_meet_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: jitsi_meet_platform_interface
+      ref: HEAD
+      resolved-ref: b1dabc945a6496ce1b9fba8d4b39d438fcf6a3e2
+      url: "git@github.com:younetsico/jitsi_meet.git"
+    source: git
     version: "2.0.0"
   js:
     dependency: "direct main"
@@ -125,7 +127,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   stack_trace:
     dependency: transitive
     description:
@@ -160,7 +162,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:
