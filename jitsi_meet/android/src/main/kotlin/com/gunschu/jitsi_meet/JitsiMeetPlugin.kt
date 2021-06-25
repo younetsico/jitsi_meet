@@ -2,6 +2,7 @@ package com.gunschu.jitsi_meet
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.PictureInPictureParams
 import android.content.Intent
 import android.util.Log
 import androidx.annotation.NonNull
@@ -166,14 +167,14 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
     private fun closeMeeting(call: MethodCall, result: Result) {
         val intent = Intent(JITSI_MEETING_CLOSE)
         activity?.sendBroadcast(intent)
-        result.success(true)
+        result.success(null)
     }
 
     private fun reopenMeeting(call: MethodCall, result: Result){
-        var intent = Intent(this.activity, JitsiMeetPluginActivity::class.java)
+        val intent = Intent(this.activity, JitsiMeetPluginActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
         this.activity?.startActivity(intent)
-        result.success(true)
+        result.success(null)
     }
 
     /**

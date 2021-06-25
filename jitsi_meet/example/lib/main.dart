@@ -204,6 +204,25 @@ class _MeetingState extends State<Meeting> {
           SizedBox(
             height: 48.0,
           ),
+          SizedBox(
+            height: 64.0,
+            width: double.maxFinite,
+            child: ElevatedButton(
+              onPressed: () {
+                JitsiMeet.reopenMeeting();
+              },
+              child: Text(
+                "Return Meeting",
+                style: TextStyle(color: Colors.white),
+              ),
+              style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateColor.resolveWith((states) => Colors.blue)),
+            ),
+          ),
+          SizedBox(
+            height: 48.0,
+          ),
         ],
       ),
     );

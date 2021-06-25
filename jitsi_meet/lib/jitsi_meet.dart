@@ -22,8 +22,8 @@ class JitsiMeet {
   static final Map<RoomNameConstraintType, RoomNameConstraint>
       defaultRoomNameConstraints = {
     RoomNameConstraintType.MIN_LENGTH: new RoomNameConstraint((value) {
-      return value.trim().length >= 3;
-    }, "Minimum room length is 3"),
+      return value.trim().length >= 2;
+    }, "Minimum room length is 2"),
     RoomNameConstraintType.ALLOWED_CHARS: new RoomNameConstraint((value) {
       return RegExp(r"^[a-zA-Z0-9-_]+$", caseSensitive: false, multiLine: false)
           .hasMatch(value);
@@ -73,6 +73,8 @@ class JitsiMeet {
   }
 
   static closeMeeting() => JitsiMeetPlatform.instance.closeMeeting();
+
+  static reopenMeeting()=> JitsiMeetPlatform.instance.reopenMeeting();
 
   /// Adds a JitsiMeetingListener that will broadcast conference events
   static addListener(JitsiMeetingListener jitsiMeetingListener) {

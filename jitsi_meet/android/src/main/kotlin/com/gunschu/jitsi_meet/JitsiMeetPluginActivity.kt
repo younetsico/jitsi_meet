@@ -1,5 +1,6 @@
 package com.gunschu.jitsi_meet
 
+import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -18,12 +19,13 @@ import org.jitsi.meet.sdk.JitsiMeetConferenceOptions
 /**
  * Activity extending JitsiMeetActivity in order to override the conference events
  */
+@SuppressLint("LogNotTimber")
 class JitsiMeetPluginActivity : JitsiMeetActivity() {
     companion object {
         @JvmStatic
         fun launchActivity(context: Context?,
                            options: JitsiMeetConferenceOptions) {
-            var intent = Intent(context, JitsiMeetPluginActivity::class.java).apply {
+            val intent = Intent(context, JitsiMeetPluginActivity::class.java).apply {
                 action = "org.jitsi.meet.CONFERENCE"
                 putExtra("JitsiMeetConferenceOptions", options)
             }
@@ -43,15 +45,15 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
             JitsiMeetEventStreamHandler.instance.onPictureInPictureTerminated()
         }
 
-        if (isInPictureInPictureMode == false && onStopCalled) {
+        if (!isInPictureInPictureMode && onStopCalled) {
             // Picture-in-Picture mode has been closed, we can (should !) end the call
-            getJitsiView().leave()
+            jitsiView.leave()
         }
     }
 
     private val myReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            when (intent?.action) {
+            when (intent.action) {
                 JITSI_MEETING_CLOSE -> finish()
             }
         }
@@ -69,6 +71,7 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
         registerReceiver(myReceiver, IntentFilter(JITSI_MEETING_CLOSE))
     }
 
+    @SuppressLint("LogNotTimber")
     override fun onConferenceWillJoin(data: HashMap<String, Any>) {
         Log.d(JITSI_PLUGIN_TAG, String.format("JitsiMeetPluginActivity.onConferenceWillJoin: %s", data))
         JitsiMeetEventStreamHandler.instance.onConferenceWillJoin(data)
@@ -107,7 +110,7 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
 
             // If you want to display the keyguard to prompt the user to unlock the phone:
             val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-            keyguardManager?.requestDismissKeyguard(this, null)
+            keyguardManager.requestDismissKeyguard(this, null)
         } else {
             // For older versions, do it as you did before.
             window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
