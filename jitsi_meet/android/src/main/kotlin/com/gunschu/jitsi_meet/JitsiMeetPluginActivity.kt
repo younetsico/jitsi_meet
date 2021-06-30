@@ -54,7 +54,7 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
     private val myReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
-                JITSI_MEETING_CLOSE -> finish()
+                JITSI_MEETING_CLOSE -> finishAndRemoveTask()
             }
         }
     }
@@ -88,7 +88,8 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
 
         Log.d(JITSI_PLUGIN_TAG, String.format("JitsiMeetPluginActivity.onConferenceTerminated: %s", data))
         JitsiMeetEventStreamHandler.instance.onConferenceTerminated(data)
-        finish()
+        finishAndRemoveTask()
+
         super.onConferenceTerminated(data)
     }
 
