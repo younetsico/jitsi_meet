@@ -19,7 +19,7 @@ class JitsiViewController: UIViewController {
     var featureFlags: Dictionary<String, Any>? = Dictionary();
     
     
-    var jistiMeetUserInfo = JitsiMeetUserInfo()
+    let jistiMeetUserInfo = JitsiMeetUserInfo()
     
     override func loadView() {
         
@@ -39,7 +39,7 @@ class JitsiViewController: UIViewController {
     override func viewDidLoad() {
         
         //print("VIEW DID LOAD")
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0)
         super.viewDidLoad()
     }
     
@@ -75,6 +75,7 @@ class JitsiViewController: UIViewController {
             
             self.featureFlags?.forEach{ key,value in
                 builder.setFeatureFlag(key, withValue: value);
+                
             }
             
         }
@@ -94,6 +95,10 @@ class JitsiViewController: UIViewController {
     
     func closeJitsiMeeting(){
         jitsiMeetView?.leave()
+    }
+
+    func reopenJitsiMeeting(){
+        
     }
     
     fileprivate func cleanUp() {
