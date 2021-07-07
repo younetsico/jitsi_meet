@@ -70,7 +70,7 @@ packages:
     description:
       path: jitsi_meet_platform_interface
       ref: HEAD
-      resolved-ref: b1dabc945a6496ce1b9fba8d4b39d438fcf6a3e2
+      resolved-ref: "4dcef9c6c7cb5ab66536bb58d8c956625d85a1e3"
       url: "git@github.com:younetsico/jitsi_meet.git"
     source: git
     version: "2.0.0"
@@ -108,7 +108,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.11.0"
+    version: "1.11.1"
   plugin_platform_interface:
     dependency: transitive
     description:

@@ -217,7 +217,7 @@ class _MeetingState extends State<Meeting> {
               ),
               style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateColor.resolveWith((states) => Colors.blue)),
+                      MaterialStateColor.resolveWith((states) => Colors.blue)),
             ),
           ),
           SizedBox(
@@ -256,13 +256,16 @@ class _MeetingState extends State<Meeting> {
       FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
     };
     if (!kIsWeb) {
+      FeatureFlagEnum.values.forEach((element) {
+        featureFlags[element] = true;
+      });
       // Here is an example, disabling features for each platform
       if (Platform.isAndroid) {
         // Disable ConnectionService usage on Android to avoid issues (see README)
         featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
       } else if (Platform.isIOS) {
         // Disable PIP on iOS as it looks weird
-        featureFlags[FeatureFlagEnum.PIP_ENABLED] = false;
+        // featureFlags[FeatureFlagEnum.PIP_ENABLED] = false;
       }
     }
     // Define meetings options here
@@ -271,7 +274,6 @@ class _MeetingState extends State<Meeting> {
       ..subject = subjectText.text
       ..userDisplayName = nameText.text
       ..userEmail = emailText.text
-      ..iosAppBarRGBAColor = iosAppBarRGBAColor.text
       ..audioOnly = isAudioOnly
       ..audioMuted = isAudioMuted
       ..videoMuted = isVideoMuted
