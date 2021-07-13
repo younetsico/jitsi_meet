@@ -4,7 +4,7 @@
         <activity
             android:name=".JitsiMeetPluginActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
             android:multiprocess="true"
