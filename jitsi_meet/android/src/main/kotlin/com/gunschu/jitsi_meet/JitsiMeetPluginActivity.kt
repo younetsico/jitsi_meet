@@ -109,6 +109,9 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
 
+
+
+
             // If you want to display the keyguard to prompt the user to unlock the phone:
             val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
             keyguardManager.requestDismissKeyguard(this, null)
