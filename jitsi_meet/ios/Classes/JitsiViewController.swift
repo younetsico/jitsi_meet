@@ -60,7 +60,7 @@ class JitsiViewController: UIViewController {
     // https://github.com/flutter/flutter/issues/14720
     // https://github.com/flutter/flutter/issues/35784#issuecomment-516243057
      open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if(!isInPictureInPicture){
+        if(isInPictureInPicture){
             super.touchesBegan(touches, with: event)
         }
      }
@@ -110,13 +110,16 @@ class JitsiViewController: UIViewController {
 
     func reopenJitsiMeeting(){
         isInPictureInPicture = false;
-        pipViewCoordinator?.exitPictureInPicture();
+        print("fsadfadsfád false")
+        exitPictureInPicture()
+        
     }
     
     fileprivate func cleanUp() {
         jitsiMeetView?.removeFromSuperview()
         jitsiMeetView = nil
         pipViewCoordinator = nil
+        
         //self.dismiss(animated: true, completion: nil)
     }
 }
@@ -164,11 +167,15 @@ extension JitsiViewController: JitsiMeetViewDelegate {
     }
     
     func exitPictureInPicture() {
-        //        print("CONFERENCE PIP OUT")
-        isInPictureInPicture = false
+                print("CONFERENCE PIP OUT")
+        
         var mutatedData : [AnyHashable : Any]
         mutatedData = ["event":"onPictureInPictureTerminated"]
         self.eventSink?(mutatedData)
+        isInPictureInPicture = false
+        DispatchQueue.main.async {
+            self.pipViewCoordinator?.exitPictureInPicture()
+        }
     }
 }
 
