@@ -74,7 +74,7 @@ class JitsiMeet {
 
   static closeMeeting() => JitsiMeetPlatform.instance.closeMeeting();
 
-  static reopenMeeting()=> JitsiMeetPlatform.instance.reopenMeeting();
+  static reopenMeeting() => JitsiMeetPlatform.instance.reopenMeeting();
 
   /// Adds a JitsiMeetingListener that will broadcast conference events
   static addListener(JitsiMeetingListener jitsiMeetingListener) {

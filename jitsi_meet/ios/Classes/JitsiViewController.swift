@@ -108,12 +108,6 @@ class JitsiViewController: UIViewController {
         jitsiMeetView?.leave()
     }
 
-    func reopenJitsiMeeting(){
-        isInPictureInPicture = false;
-        self.pipViewCoordinator?.delegate?.exitPictureInPicture();
-        pipViewCoordinator?.exitPictureInPicture();
-        
-    }
     
     fileprivate func cleanUp() {
         jitsiMeetView?.removeFromSuperview()
@@ -166,7 +160,7 @@ extension JitsiViewController: JitsiMeetViewDelegate {
         }
     }
     
-    func exitPictureInPicture() {
+    func exitPicture() {
                 print("CONFERENCE PIP OUT")
         
         var mutatedData : [AnyHashable : Any]
