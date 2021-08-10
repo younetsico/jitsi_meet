@@ -120,6 +120,7 @@ public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
 
 
         } else if(call.method == "reopenMeeting"){
+            
             self.jitsiViewController?.reopenJitsiMeeting()
         }
 

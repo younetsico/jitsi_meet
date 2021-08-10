@@ -110,8 +110,8 @@ class JitsiViewController: UIViewController {
 
     func reopenJitsiMeeting(){
         isInPictureInPicture = false;
-        print("fsadfadsfád false")
-        exitPictureInPicture()
+        self.pipViewCoordinator?.delegate?.exitPictureInPicture();
+        pipViewCoordinator?.exitPictureInPicture();
         
     }
     
