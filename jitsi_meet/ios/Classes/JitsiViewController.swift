@@ -58,7 +58,7 @@ class JitsiViewController: UIViewController {
     // See:
     // https://github.com/flutter/flutter/issues/14720
     // https://github.com/flutter/flutter/issues/35784#issuecomment-516243057
-    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+    // open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
     
     func openJitsiMeet() {
         cleanUp()
