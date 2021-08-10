@@ -157,8 +157,6 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
 
   @override
   reopenMeeting() {
-   if(Platform.isAndroid){
-     _channel.invokeMethod('reopenMeeting');
-   }
+    _channel.invokeMethod('reopenMeeting');
   }
 }

@@ -16,6 +16,7 @@ class JitsiViewController: UIViewController {
     var audioMuted: Bool? = false
     var videoMuted: Bool? = false
     var token:String? = nil
+    var isInPictureInPicture: Bool = false
     var featureFlags: Dictionary<String, Any>? = Dictionary();
     
     
@@ -58,7 +59,11 @@ class JitsiViewController: UIViewController {
     // See:
     // https://github.com/flutter/flutter/issues/14720
     // https://github.com/flutter/flutter/issues/35784#issuecomment-516243057
-    // open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if(!isInPictureInPicture){
+            super.touchesBegan(touches, with: event)
+        }
+     }
     
     func openJitsiMeet() {
         cleanUp()
@@ -104,7 +109,8 @@ class JitsiViewController: UIViewController {
     }
 
     func reopenJitsiMeeting(){
-        
+        isInPictureInPicture = false;
+        pipViewCoordinator?.exitPictureInPicture();
     }
     
     fileprivate func cleanUp() {
@@ -151,6 +157,7 @@ extension JitsiViewController: JitsiMeetViewDelegate {
         var mutatedData = data
         mutatedData?.updateValue("onPictureInPictureWillEnter", forKey: "event")
         self.eventSink?(mutatedData)
+        isInPictureInPicture = true
         DispatchQueue.main.async {
             self.pipViewCoordinator?.enterPictureInPicture()
         }
@@ -158,6 +165,7 @@ extension JitsiViewController: JitsiMeetViewDelegate {
     
     func exitPictureInPicture() {
         //        print("CONFERENCE PIP OUT")
+        isInPictureInPicture = false
         var mutatedData : [AnyHashable : Any]
         mutatedData = ["event":"onPictureInPictureTerminated"]
         self.eventSink?(mutatedData)
