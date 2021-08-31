@@ -5,9 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "jitsi_meet",
+            "name": "debug",
             "type": "dart",
             "request": "launch",
+            "flutterMode": "debug",
+            "program": "jitsi_meet/example/lib/main.dart"
+        },
+        {
+            "name": "profile",
+            "type": "dart",
+            "request": "launch",
+            "flutterMode": "profile",
             "program": "jitsi_meet/example/lib/main.dart"
         },
     ]

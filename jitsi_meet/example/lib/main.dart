@@ -298,10 +298,10 @@ class _MeetingState extends State<Meeting> {
             debugPrint("${options.room} joined with message: $message");
           },
           onConferenceTerminated: (message) {
-            debugPrint("${options.room} terminated with message: $message");
+            print("${options.room} terminated with message: $message");
           },
           onJitSiClosed: () {
-            debugPrint('yeah it really closed');
+            print('yeah it really closed');
           },
           genericListeners: [
             JitsiGenericListener(

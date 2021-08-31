@@ -50,6 +50,7 @@ public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
                     if let serverURL = myArgs["serverURL"] as? String {
                         //                        print("serverUrl: ", serverURL);
                         self.jitsiViewController?.serverUrl = URL(string: serverURL);
+                        self.jitsiViewController?.url = self.jitsiViewController!.serverUrl!.absoluteString.appending("/\(roomName)")
                     }
                     let subject = myArgs["subject"] as? String
                     let displayName = myArgs["userDisplayName"] as? String
@@ -62,7 +63,7 @@ public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
                     self.jitsiViewController?.jistiMeetUserInfo.displayName = displayName;
                     self.jitsiViewController?.jistiMeetUserInfo.email = email;
                     self.jitsiViewController?.token = token;
-                    self.jitsiViewController?.url = self.jitsiViewController!.serverUrl!.absoluteString.appending("/\(roomName)")
+                    
 
 
                     if let avatarURL = myArgs["userAvatarURL"] as? String {
