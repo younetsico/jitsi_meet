@@ -5,7 +5,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:jitsi_meet_platform_interface/jitsi_meet_platform_interface.dart';
 import 'package:js/js.dart';
 
 import 'jitsi_meet_external_api.dart' as jitsi;
@@ -217,5 +216,5 @@ class JitsiMeetAPI extends JitsiMeetExternalAPI {
 var jitsi = { JitsiMeetAPI: JitsiMeetAPI };""";
 
   @override
-  reopenMeeting() {}
+  Future<void> reopenMeeting() {}
 }
