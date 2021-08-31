@@ -62,6 +62,7 @@ public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
                     self.jitsiViewController?.jistiMeetUserInfo.displayName = displayName;
                     self.jitsiViewController?.jistiMeetUserInfo.email = email;
                     self.jitsiViewController?.token = token;
+                    self.jitsiViewController?.url = self.jitsiViewController!.serverUrl!.absoluteString.appending("/\(roomName)")
 
 
                     if let avatarURL = myArgs["userAvatarURL"] as? String {
@@ -97,11 +98,14 @@ public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
             } else {
                 result(FlutterError.init(code: "400", message: "arguments are null for method: (joinMeeting)", details: "arguments are null for method: (joinMeeting)"))
             }
+            
+            
 
             let navigationController = UINavigationController(rootViewController: (self.jitsiViewController)!)
             navigationController.setNavigationBarHidden(true, animated: false)
             navigationController.modalPresentationStyle = .overCurrentContext
             navigationController.navigationBar.barTintColor = UIColor.black
+           
             self.uiVC.present(navigationController, animated: true)
             result(nil)
 

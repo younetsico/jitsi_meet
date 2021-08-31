@@ -7,6 +7,7 @@ class JitsiViewController: UIViewController {
     
     fileprivate var pipViewCoordinator: PiPViewCoordinator?
     fileprivate var jitsiMeetView: JitsiMeetView?
+    var url :  String = ""
     
     var eventSink:FlutterEventSink? = nil
     var roomName:String? = nil
@@ -25,6 +26,12 @@ class JitsiViewController: UIViewController {
     override func loadView() {
         
         super.loadView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        var mutatedData : [AnyHashable : Any]
+        mutatedData = ["event":"onJitSiClosed","url":url]
+        self.eventSink?(mutatedData)
     }
     
     @objc func openButtonClicked(sender : UIButton){
@@ -77,11 +84,14 @@ class JitsiViewController: UIViewController {
             builder.welcomePageEnabled = true
             builder.room = self.roomName
             builder.serverURL = self.serverUrl
-            builder.subject = self.subject
             builder.userInfo = self.jistiMeetUserInfo
-            builder.audioOnly = self.audioOnly ?? false
-            builder.audioMuted = self.audioMuted ?? false
-            builder.videoMuted = self.videoMuted ?? false
+            builder.setAudioOnly(self.audioOnly ?? false)
+            builder.setAudioMuted(self.audioMuted ?? false)
+            builder.setVideoMuted(self.videoMuted ?? false)
+            if(self.subject != nil){
+                builder.setSubject(self.subject!)
+            }
+            
             builder.token = self.token
             
             self.featureFlags?.forEach{ key,value in
@@ -90,6 +100,7 @@ class JitsiViewController: UIViewController {
             }
             
         }
+        
         
         jitsiMeetView.join(options)
         
@@ -164,7 +175,8 @@ extension JitsiViewController: JitsiMeetViewDelegate {
                 print("CONFERENCE PIP OUT")
         
         var mutatedData : [AnyHashable : Any]
-        mutatedData = ["event":"onPictureInPictureTerminated"]
+        
+        mutatedData = ["event":"onPictureInPictureTerminated","url":url]
         self.eventSink?(mutatedData)
         isInPictureInPicture = false
         DispatchQueue.main.async {
