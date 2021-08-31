@@ -257,7 +257,7 @@ class _MeetingState extends State<Meeting> {
     };
     if (!kIsWeb) {
       FeatureFlagEnum.values.forEach((element) {
-        featureFlags[element] = true;
+        featureFlags[element] = false;
       });
       // Here is an example, disabling features for each platform
       if (Platform.isAndroid) {
