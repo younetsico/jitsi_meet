@@ -65,7 +65,6 @@ class JitsiMeetEventStreamHandler private constructor(): EventChannel.StreamHand
                 = HashMap()
         data["event"] = "onJitSiClosed"
         eventSink?.success(data)
-        onCancel(null)
     }
 
 }
