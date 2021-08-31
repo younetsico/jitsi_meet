@@ -102,10 +102,10 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
     }, onError: (dynamic error) {
       debugPrint('Jitsi Meet broadcast error: $error');
       _listeners.forEach((listener) {
-        if (listener.onError != null) listener.onError!(error);
+        listener.onError?.call(error);
       });
       _perMeetingListeners.forEach((key, listener) {
-        if (listener.onError != null) listener.onError!(error);
+        listener.onError?.call(error);
       });
     });
   }
@@ -115,16 +115,16 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
     _listeners.forEach((listener) {
       switch (message['event']) {
         case "onConferenceWillJoin":
-          if (listener.onConferenceWillJoin != null)
-            listener.onConferenceWillJoin!(message);
+          listener.onConferenceWillJoin?.call(message);
           break;
         case "onConferenceJoined":
-          if (listener.onConferenceJoined != null)
-            listener.onConferenceJoined!(message);
+          listener.onConferenceJoined?.call(message);
           break;
         case "onConferenceTerminated":
-          if (listener.onConferenceTerminated != null)
-            listener.onConferenceTerminated!(message);
+          listener.onConferenceTerminated?.call(message);
+          break;
+        case "onJitSiClosed":
+          listener.onJitSiClosed?.call();
           break;
       }
     });
@@ -145,11 +145,14 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
             listener.onConferenceJoined!(message);
           break;
         case "onConferenceTerminated":
-          if (listener.onConferenceTerminated != null)
-            listener.onConferenceTerminated!(message);
-
+          listener.onConferenceTerminated?.call(message);
           // Remove the listener from the map of _perMeetingListeners on terminate
           _perMeetingListeners.remove(listener);
+          break;
+        case "onJitSiClosed":
+          listener.onJitSiClosed?.call();
+          _perMeetingListeners.remove(listener);
+
           break;
       }
     }

@@ -100,6 +100,8 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.e("KIMKIM","onDestroy");
+        JitsiMeetEventStreamHandler.instance.onJitSiClosed();
         turnScreenOffAndKeyguardOn();
     }
 

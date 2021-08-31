@@ -23,6 +23,8 @@ class JitsiMeetingListener {
   /// (may be for mobile too)
   final List<JitsiGenericListener>? genericListeners;
 
+  final Function()? onJitSiClosed;
+
   JitsiMeetingListener(
       {this.onConferenceWillJoin,
       this.onConferenceJoined,
@@ -30,7 +32,8 @@ class JitsiMeetingListener {
       this.onPictureInPictureTerminated,
       this.onPictureInPictureWillEnter,
       this.onError,
-      this.genericListeners});
+      this.genericListeners,
+      this.onJitSiClosed});
 }
 
 /// Generic listener
