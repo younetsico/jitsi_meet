@@ -133,7 +133,9 @@ class MethodChannelJitsiMeet extends JitsiMeetPlatform {
   /// Sends a broadcast to per meeting listeners added during joinMeeting
   void _broadcastToPerMeetingListeners(message) {
     String? url = message['url'];
-    final listener = _perMeetingListeners[url];
+    JitsiMeetingListener? listener = _perMeetingListeners[url];
+    if (listener == null && _perMeetingListeners.isNotEmpty)
+      listener = _perMeetingListeners.values.first;
     if (listener != null) {
       switch (message['event']) {
         case "onConferenceWillJoin":

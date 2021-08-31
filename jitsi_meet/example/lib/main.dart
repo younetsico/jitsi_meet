@@ -300,6 +300,9 @@ class _MeetingState extends State<Meeting> {
           onConferenceTerminated: (message) {
             debugPrint("${options.room} terminated with message: $message");
           },
+          onJitSiClosed: () {
+            debugPrint('yeah it really closed');
+          },
           genericListeners: [
             JitsiGenericListener(
                 eventName: 'readyToClose',
