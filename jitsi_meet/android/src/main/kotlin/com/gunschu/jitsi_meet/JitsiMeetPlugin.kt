@@ -131,7 +131,7 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
         Log.d(JITSI_PLUGIN_TAG, "Server URL: $serverURL, $serverURLString")
 
         val optionsBuilder = JitsiMeetConferenceOptions.Builder()
-
+        JitsiMeetEventStreamHandler.instance.url = "$serverURLString/$room"
         // Set meeting options
         optionsBuilder
                 .setServerURL(serverURL)

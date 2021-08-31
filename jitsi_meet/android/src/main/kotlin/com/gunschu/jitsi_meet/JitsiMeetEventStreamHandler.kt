@@ -12,6 +12,7 @@ class JitsiMeetEventStreamHandler private constructor(): EventChannel.StreamHand
     companion object {
         val instance = JitsiMeetEventStreamHandler()
     }
+    var url :String = ""
 
     private var eventSink: EventChannel.EventSink? = null
 
@@ -63,6 +64,7 @@ class JitsiMeetEventStreamHandler private constructor(): EventChannel.StreamHand
         Log.d(JITSI_PLUGIN_TAG, "JitsiMeetEventStreamHandler.onJitSiClosed")
         var data : HashMap<String, String>
                 = HashMap()
+        data["url"] = url
         data["event"] = "onJitSiClosed"
         eventSink?.success(data)
     }

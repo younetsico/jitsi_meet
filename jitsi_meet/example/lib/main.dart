@@ -277,7 +277,7 @@ class _MeetingState extends State<Meeting> {
       ..audioOnly = isAudioOnly
       ..audioMuted = isAudioMuted
       ..videoMuted = isVideoMuted
-      ..featureFlags.addAll(featureFlags)
+      // ..featureFlags.addAll(featureFlags)
       ..webOptions = {
         "roomName": roomText.text,
         "width": "100%",
