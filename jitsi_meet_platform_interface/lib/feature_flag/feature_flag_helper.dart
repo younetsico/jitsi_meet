@@ -33,5 +33,6 @@ class FeatureFlagHelper {
     FeatureFlagEnum.VIDEO_MUTE_ENABLED: 'video-mute.enabled',
     FeatureFlagEnum.VIDEO_SHARE_ENABLED: 'video-share.enabled',
     FeatureFlagEnum.WELCOME_PAGE_ENABLED: 'welcomepage.enabled',
+    FeatureFlagEnum.ENABLE_SECURITY_OPTIONS: 'security-options.enabled'
   };
 }
