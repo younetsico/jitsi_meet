@@ -1,19 +1,21 @@
 # jitsi_meet
 
-#### Support us using our patreon account. https://www.patreon.com/Gunschu
+## Support us using our patreon account
 
+[https://www.patreon.com/Gunschu](https://www.patreon.com/Gunschu)
 
 Jitsi Meet Plugin for Flutter. Supports Android, iOS, and Web platforms.
 
-"Jitsi Meet is an open-source (Apache) WebRTC JavaScript application that uses Jitsi Videobridge to provide high quality, secure and scalable video conferences." 
+"Jitsi Meet is an open-source (Apache) WebRTC JavaScript application that uses Jitsi Videobridge to provide high quality, secure and scalable video conferences."
 
 Find more information about Jitsi Meet [here](https://github.com/jitsi/jitsi-meet)
 
 ## Table of Contents
-  - [Configuration](#configuration)
-    - [IOS](#ios)
-      - [Podfile](#podfile)
-      - [Info.plist](#infoplist)
+
+- [Configuration](#configuration)
+  - [IOS](#ios)
+  - [Podfile](#podfile)
+    - [Info.plist](#infoplist)
     - [Android](#android)
       - [Gradle](#gradle)
       - [AndroidManifest.xml](#androidmanifestxml)
@@ -30,16 +32,19 @@ Find more information about Jitsi Meet [here](https://github.com/jitsi/jitsi-mee
   - [Closing a Meeting Programmatically](#closing-a-meeting-programmatically)
   - [Contributing](#contributing)
 
-<a name="configuration"></a>
+[configuration](configuration)
+
 ## Configuration
 
-<a name="ios"></a>
 ### IOS
-* Note: Example compilable with XCode 12.2 & Flutter 1.22.4.
+
+- Note: Example compilable with XCode 12.2 & Flutter 1.22.4.
 
 #### Podfile
+
 Ensure in your Podfile you have an entry like below declaring platform of 11.0 or above and disable BITCODE.
-```
+
+```ruby
 platform :ios, '11.0'
 
 ...
@@ -54,6 +59,7 @@ end
 ```
 
 #### Info.plist
+
 Add NSCameraUsageDescription and NSMicrophoneUsageDescription to your
 Info.plist.
 
@@ -64,11 +70,14 @@ Info.plist.
 <string>$(PRODUCT_NAME) MyApp needs access to your microphone for meetings.</string>
 ```
 
-<a name="android"></a>
+[android](android)
+
 ### Android
 
 #### Gradle
+
 Set dependencies of build tools gradle to minimum 3.6.3:
+
 ```gradle
 dependencies {
     classpath 'com.android.tools.build:gradle:3.6.3' <!-- Upgrade this -->
@@ -77,6 +86,7 @@ dependencies {
 ```
 
 Set distribution gradle wrapper to minimum 5.6.4.
+
 ```gradle
 distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
@@ -86,8 +96,9 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-5.6.4-all.zip 
 ```
 
 #### AndroidManifest.xml
-Jitsi Meet's SDK AndroidManifest.xml will conflict with your project, namely 
-the application:label field. To counter that, go into 
+
+Jitsi Meet's SDK AndroidManifest.xml will conflict with your project, namely
+the application:label field. To counter that, go into
 `android/app/src/main/AndroidManifest.xml` and add the tools library
 and `tools:replace="android:label"` to the application tag.
 
@@ -107,7 +118,9 @@ and `tools:replace="android:label"` to the application tag.
 ```
 
 #### Minimum SDK Version 23
+
 Update your minimum sdk version to 23 in android/app/build.gradle
+
 ```groovy
 defaultConfig {
     applicationId "com.gunschu.jitsi_meet_example"
@@ -120,8 +133,8 @@ defaultConfig {
 
 #### Proguard
 
-Jitsi's SDK enables proguard, but without a proguard-rules.pro file, your release 
-apk build will be missing the Flutter Wrapper as well as react-native code. 
+Jitsi's SDK enables proguard, but without a proguard-rules.pro file, your release
+apk build will be missing the Flutter Wrapper as well as react-native code.
 In your Flutter project's android/app/build.gradle file, add proguard support
 
 ```groovy
@@ -139,15 +152,15 @@ buildTypes {
 }
 ```
 
-Then add a file in the same directory called proguard-rules.pro. See the example 
+Then add a file in the same directory called proguard-rules.pro. See the example
 app's [proguard-rules.pro](example/android/app/proguard-rules.pro) file to know what to paste in.
 
 *Note*  
-If you do not create the proguard-rules.pro file, then your app will 
+If you do not create the proguard-rules.pro file, then your app will
 crash when you try to join a meeting or the meeting screen tries to open
 but closes immediately. You will see one of the below errors in logcat.
 
-```
+```kotlin
 ## App crashes ##
 java.lang.RuntimeException: Parcel android.os.Parcel@8530c57: Unmarshalling unknown type code 7536745 at offset 104
     at android.os.Parcel.readValue(Parcel.java:2747)
@@ -156,7 +169,7 @@ java.lang.RuntimeException: Parcel android.os.Parcel@8530c57: Unmarshalling unkn
     .....
 ```
 
-```
+```ruby
 ## Meeting won't open and you go to previous screen ##
 W/unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.BV.LinearGradient.LinearGradientManager
 W/unknown:ViewManagerPropertyUpdater: Could not find generated setter for class com.facebook.react.uimanager.g
@@ -165,15 +178,18 @@ W/unknown:ViewManagerPropertyUpdater: Could not find generated setter for class 
 .....
 ```
 
-<a name="web"></a>
+[web](web)
+
 ### WEB
 
 To implement you need to include Jitsi Js library in the index.html of web section
+
 ```javascript
 <script src="https://meet.jit.si/external_api.js" type="application/javascript"></script>
 ```
 
 Example:
+
 ```html
 <body>
   <!-- This script installs service_worker.js to provide PWA functionality to
@@ -191,20 +207,20 @@ Example:
 </body>
 </html>
 ```
+
 *Note*
 See usage example in jitsi_meet plugin
-
-<a name="join-a-meeting"></a>
+[join-a-meeting](join-a-meeting)
 
 ## Join A Meeting
 
 ```dart
 _joinMeeting() async {
     try {
-	  FeatureFlag featureFlag = FeatureFlag();
-	  featureFlag.welcomePageEnabled = false;
-	  featureFlag.resolution = FeatureFlagVideoResolution.MD_RESOLUTION; // Limit video resolution to 360p
-	  
+   FeatureFlag featureFlag = FeatureFlag();
+   featureFlag.welcomePageEnabled = false;
+   featureFlag.resolution = FeatureFlagVideoResolution.MD_RESOLUTION; // Limit video resolution to 360p
+   
       var options = JitsiMeetingOptions()
         ..room = "myroom" // Required, spaces will be trimmed
         ..serverURL = "https://someHost.com"
@@ -224,7 +240,7 @@ _joinMeeting() async {
   }
 ```
 
-<a name="jitsimeetingoptions"></a>
+[jitsimeetingoptions](jitsimeetingoptions)
 
 ### JitsiMeetingOptions
 
@@ -237,12 +253,12 @@ _joinMeeting() async {
 | audioOnly         | No        | false             | Start meeting without video. Can be turned on in meeting. |
 | audioMuted        | No        | false             | Start meeting with audio muted. Can be turned on in meeting. |
 | videoMuted        | No        | false             | Start meeting with video muted. Can be turned on in meeting. |
-| serverURL         | No        | meet.jitsi.si     | Specify your own hosted server. Must be a valid absolute URL of the format `<scheme>://<host>[/path]`, i.e. https://someHost.com. Defaults to Jitsi Meet's servers. |
+| serverURL         | No        | meet.jitsi.si     | Specify your own hosted server. Must be a valid absolute URL of the format `<scheme>://<host>[/path]`, i.e. <https://someHost.com>. Defaults to Jitsi Meet's servers. |
 | userAvatarURL     | N/A       | none              | User's avatar URL. |
 | token             | N/A       | none              | JWT token used for authentication. |
 | featureFlag      | No        | see below         | Object of FeatureFlag class used to enable/disable features and set video resolution of Jitsi Meet SDK. |
 
-<a name="jitsimeetingresponse"></a>
+[jitsimeetingresponse](jitsimeetingresponse)
 
 ### FeatureFlag
 
@@ -285,7 +301,7 @@ We are using the [official list of flags, taken from the Jitsi Meet repository](
 | message         | String  | Success message or error as a String. |
 | error           | dynamic | Optional, only exists if isSuccess is false. The error object. |
 
-<a name="listening-to-meeting-events"></a>
+[listening-to-meeting-events](listening-to-meeting-events)
 
 ## Listening to Meeting Events
 
@@ -301,11 +317,12 @@ Events supported
 | onError                | Error has occurred with listening to meeting events. |
 
 ### Per Meeting Events
+
 To listen to meeting events per meeting, pass in a JitsiMeetingListener
 in joinMeeting. The listener will automatically be removed when an  
 onConferenceTerminated event is fired.
 
-```
+```dart
 await JitsiMeet.joinMeeting(options,
   listener: JitsiMeetingListener(onConferenceWillJoin: ({message}) {
     debugPrint("${options.room} will join with message: $message");
@@ -314,13 +331,14 @@ await JitsiMeet.joinMeeting(options,
   }, onConferenceTerminated: ({message}) {
     debugPrint("${options.room} terminated with message: $message");
   }, onPictureInPictureWillEnter: ({message}) {
-	debugPrint("${options.room} entered PIP mode with message: $message");
+ debugPrint("${options.room} entered PIP mode with message: $message");
   }, onPictureInPictureTerminated: ({message}) {
-	debugPrint("${options.room} exited PIP mode with message: $message");
+ debugPrint("${options.room} exited PIP mode with message: $message");
   }));
 ```
 
 ### Global Meeting Events
+
 To listen to global meeting events, simply add a JitsiMeetListener with  
 `JitsiMeet.addListener(myListener)`. You can remove listeners using  
 `JitsiMeet.removeListener(listener)` or `JitsiMeet.removeAllListeners()`.
@@ -370,13 +388,15 @@ _onError(error) {
 ```
 
 ## Closing a Meeting Programmatically
+
 ```dart
 JitsiMeet.closeMeeting();
 ```
 
-<a name="contributing"></a>
+[contributing](contributing)
 
 ## Contributing
+
 Send a pull request with as much information as possible clearly
 describing the issue or feature. Keep changes small and for one issue at
 a time.

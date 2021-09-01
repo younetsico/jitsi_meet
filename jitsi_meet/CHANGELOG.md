@@ -1,69 +1,98 @@
-## 4.0.0
+# JitSi Meeting Clone
+
 * Update Jitsi Meet SDK for Android to 3.3.0.
 * Update Jitsi Meet SDK for iOS to 3.3.0.
 * Breaking: Null safety support.
 
+## 3.1.0
+
+* Add event **onJitSiClosed** when view of JitSi destroyed
+* Add FeatureFlag
+  * featureFlagEnum.AUDIO_FOCUS_DISABLED
+  * FeatureFlagEnum.AUDIO_MUTE_ENABLED
+  * FeatureFlagEnum.CONFERENCE_TIMER_ENABLED
+  * FeatureFlagEnum.FILMSTRIP_ENABLED
+  * FeatureFlagEnum.IOS_SCREEN_SHARE_ENABLE
+  * FeatureFlagEnum.KICK_OUT_ENABLED
+  * FeatureFlagEnum.NOTIFICATION_ENABLED
+  * FeatureFlagEnum.OVERFLOW_MENU_ENABLED
+  * FeatureFlagEnum.SERVER_URL_CHANGE_ENABLED
+  * FeatureFlagEnum.TOOLBOX_ENABLED
+  * FeatureFlagEnum.VIDEO_MUTE_ENABLED
+  
 ## 3.0.0
+
 * BREAKING: Add support for web.
 
 ## 2.1.0
+
 * Update Jitsi Meet SDK for Android to 3.2.0.
 * Fixes issue with Android crashing when calling JitsiMeet.closeMeeting().
 
 ## 2.0.0
+
 * BREAKING: Update feature flags to be a class instead of a map.
 * Added more feature flags.
 * PIP hotfix and callback.
 
 ## 1.2.0
+
 * Add support for screen sharing.
 
 ## 1.1.0
+
 * Add support for userAvatarURL.
 * Update Jitsi Meet SDK to 2.11.0.
 * Update iOS deployment target to 11.0.
 
 ## 1.0.0
+
 * Update Jitsi Meet SDK for Android to 2.10.0.
 * Update Jitsi Meet SDK for iOS to 2.10.2.
 * Breaking change for Android. Minimum SDK must be increased to 23.
 
 ## 0.4.1
+
 * Fixed close meeting programmatically in iOS.
 * Updated formatting to increase pub points.
 
 ## 0.4.0
+
 * Removed the app bar when the meeting is opening.
 
 ## 0.3.0
+
 * Added IOS support to close the meeting programmatically
 
 ## 0.2.5
+
 * Added Android support to close the meeting programmatically
 
 ## 0.2.4
+
 * IOS Xcode 11.5 support
 
 ## 0.2.3
+
 * Added support for pass JWT token
 
 ## 0.2.2
+
 * Added support for feature flags
 
-
 ## 0.2.1
-* Updated JitsiMeet SDK to v2.9.0 
+
+* Updated JitsiMeet SDK to v2.9.0
 
 ## 0.2.0
+
 * Added IOSAppBarRGBAColor Param
 
 ## 0.1.9
 
 * Upgrading to IOS Cocoapods JitsiMeet v2.8.1
 
-
 ## 0.1.9pod install
-
 
 * Fix defects for Android and SDK version
 
@@ -87,7 +116,7 @@ onConferenceJoined, onConferenceTerminated, and onError
 
 ## 0.1.4
 
-* Move and rename Kotlin TAG variable into plugin class 
+* Move and rename Kotlin TAG variable into plugin class
 to eliminate naming conflicts
 
 ## 0.1.3+1
