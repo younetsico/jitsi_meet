@@ -254,6 +254,7 @@ class _MeetingState extends State<Meeting> {
     // Full list of feature flags (and defaults) available in the README
     Map<FeatureFlagEnum, bool> featureFlags = {
       FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
+      FeatureFlagEnum.ENABLE_SECURITY_OPTIONS: false,
     };
     if (!kIsWeb) {
       FeatureFlagEnum.values.forEach((element) {

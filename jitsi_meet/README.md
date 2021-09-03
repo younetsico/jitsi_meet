@@ -117,6 +117,35 @@ and `tools:replace="android:label"` to the application tag.
 </manifest>
 ```
 
+#### style.xml
+
+```xml
+
+  <?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme applied to the Android Window while the process is starting -->
+    <!-- Base application theme. -->
+    <!-- Change @style/Theme.AppCompat.Light.NoActionBar to Theme.AppCompat.Light.NoActionBar -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+
+    </style>
+
+    <!-- Theme applied to the Android Window as soon as the process has started.
+         This theme determines the color of the Android Window while your
+         Flutter UI initializes, as well as behind your Flutter UI while its
+         running.
+         
+         This Theme is only used starting with V2 of Flutter's Android embedding. -->
+    <style name="NormalTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+</resources>
+
+
+```
+
 #### Minimum SDK Version 23
 
 Update your minimum sdk version to 23 in android/app/build.gradle
